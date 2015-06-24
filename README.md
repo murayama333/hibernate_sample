@@ -42,7 +42,7 @@ JPAの主要なコンポーネントは以下のとおりです。
 Entityはリレーショナルデータベース上のテーブルと対になるクラスです。またEntityクラスには@Entityアノテーションを付与し、テーブルのカラムをクラスのプロパティとして定義します。
 
 
-```
+```java
 package com.example;
 
 import javax.persistence.Entity;
@@ -92,14 +92,14 @@ public class Book {
 
 EntityManagerはEntityの永続化を管理します。EntityManagerインスタンスはEntityManagerFactoryクラスから生成します。
 
-```
+```java
 EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa-sample");
 EntityManager em = emf.createEntityManager();
 ```
 
 EntityManagerを通じてEntityを取得する場合は次のように実装します。
 
-```
+```java
 Book book1 = em.find(Book.class, 1l);
 ```
 
@@ -108,7 +108,7 @@ Book book1 = em.find(Book.class, 1l);
 
 またEntityを保存する場合は次のように実装します。
 
-```
+```java
 EntityTransaction tx = em.getTransaction();
 
 Book book1 = new Book();
@@ -123,7 +123,7 @@ tx.commit();
 またEntityManager、およびEntityManagerFactoryは終了時にクローズするようにします。
 
 
-```
+```java
 em.close();
 emf.close();
 ```
@@ -137,13 +137,13 @@ JPQL（Java Persistence Query Language）はSQLライクなクエリ言語です
 
 JPQLは次のような構文になります。
 
-```
+```java
 "SELECT e FROM Book e"
 ```
 
 JPQLはEntityに対して@NamedQueryアノテーションで定義できます。
 
-```
+```java
 @Entity
 @NamedQuery(name="Book.findAll", query="SELECT e FROM Book e")
 public class Book {
@@ -151,7 +151,7 @@ public class Book {
 
 JPQLはEntityManagerに対して次のように実行します。
 
-```
+```java
 Query query = em.createNamedQuery("Book.findAll");
 List<Book> books = (List<Book>) query.getResultList();
 ```
@@ -160,7 +160,7 @@ List<Book> books = (List<Book>) query.getResultList();
 
 persistence.xmlはJPAの設定ファイルです。データベースの接続情報やEntityクラスの定義など様々な情報を定義します。
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1"
 	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
