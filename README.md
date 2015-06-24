@@ -182,3 +182,16 @@ persistence.xmlはJPAの設定ファイルです。データベースの接続�
 	</persistence-unit>
 </persistence>
 ```
+
+
+## このサンプルの動かし方
+
+プロジェクトをダウンロードしたら、次のコマンドを実行してEclipseプロジェクトに変換します。
+
+```
+mvn eclipse:eclipse
+```
+
+Eclipseから本プロジェクトをインポートします。
+
+その後、テストクラスを実行してください。
